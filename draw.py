@@ -7,30 +7,30 @@ def draw_line( x0, y0, x1, y1, screen, color ):
     B = -(x1 - x0)
     if B <= 0:
         if A >= 0:
-            if -B < A:
-                d = A + 2 * B
-                while y <= y1:
-                    plot(screen, color, x, y)
-                    if d < 0:
-                        x += 1
-                        d += 2 * A
-                    y += 1
-                    d += 2 * B
-            else:
+            if A <= -B:
                 d = 2 * A + B
                 while x <= x1:
                     plot(screen, color, x, y)
-                    if d > 0:
+                    if d >= 0:
                         y += 1
                         d += 2 * B
                     x += 1
                     d += 2 * A
+            else:
+                d = A + 2 * B
+                while y <= y1:
+                    plot(screen, color, x, y)
+                    if d <= 0:
+                        x += 1
+                        d += 2 * A
+                    y += 1
+                    d += 2 * B
         else:
-            if B < A:
+            if A >= B:
                 d = 2 * A + -B
                 while x <= x1:
                     plot(screen, color, x, y)
-                    if d < 0:
+                    if d <= 0:
                         y -= 1
                         d -= 2 * B
                     x += 1
@@ -39,7 +39,7 @@ def draw_line( x0, y0, x1, y1, screen, color ):
                 d = A + -2 * B
                 while y >= y1:
                     plot(screen, color, x, y)
-                    if d < 0:
+                    if d >= 0:
                         x += 1
                         d += 2 * A
                     y -= 1
